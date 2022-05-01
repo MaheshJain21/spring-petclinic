@@ -32,7 +32,7 @@ pipeline {
 	    }
 	    stage("DockerImageBuild") {
 	        steps {
-                 bat 'docker build -f Dockerfile -t dockertest/spring-petclinic-2.6.0-SNAPSHOT.jar:latest .'   
+                 bat 'docker build -f Dockerfile -t dockertest/spring-petclinic-2.6.0.jar:latest .'   
 	            }
 		}
         stage("DockerLogin") {

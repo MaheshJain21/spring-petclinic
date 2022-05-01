@@ -30,11 +30,15 @@ pipeline {
 	        }
 
 	    }
-	    stage("deploy") {
+	    stage("DockerImageBuild") {
 	        steps {
-	            echo "deploy"
-	            bat 'docker build -f Dockerfile -t dockertest/testimage:latest .'
-	      }
+                 bat 'docker build -f Dockerfile -t dockertest/spring-petclinic-2.6.0-SNAPSHOT.jar:${BUILD_NUMBER} .'   
+	            }
+		}
+        stage("DockerLogin") {
+        	steps {
+        	bat 'echo $DOCKERHUB_CREDENTIALS | docker login -u $DOCKERHUB_CREDENTIALS --password-stdin'
+        	}                
 		}
 	}
 }

@@ -38,7 +38,7 @@ pipeline {
         stage("DockerLogin") {
         	steps {
         	script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
+                    docker.withRegistry('https://registry.hub.docker.com', 'DOCKERHUB_CREDENTIALS') {
                         docker.image("spring-petclinic-2.6.0.jar:latest").push()
                //         docker.image("vigneshsweekaran/hello-world:${TAG}").push("latest")
                     }

@@ -37,7 +37,12 @@ pipeline {
 		}
         stage("DockerLogin") {
         	steps {
-        	bat 'echo $DOCKERHUB_CREDENTIALS | docker login -u $DOCKERHUB_CREDENTIALS --password-stdin'
+        	script {
+                    docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
+                        docker.image("spring-petclinic-2.6.0.jar:latest").push()
+               //         docker.image("vigneshsweekaran/hello-world:${TAG}").push("latest")
+                    }
+                }
         	}                
 		}
 	}

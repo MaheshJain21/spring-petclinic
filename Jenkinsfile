@@ -26,7 +26,7 @@ pipeline {
 	    stage("test") {
 	        steps{
 	            echo "test"
-	        //    bat "mvn test"
+	            bat "mvn test"
 	        }
 
 	    }
